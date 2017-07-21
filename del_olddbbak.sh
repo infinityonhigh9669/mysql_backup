@@ -10,7 +10,7 @@ function die () {
   exit 1
 }
 
-CONFIG=${1:-`dirname $0`/backupmysql.conf}
+CONFIG=${1:-`dirname $0`/setup.conf}
 [ -f "$CONFIG" ] && . "$CONFIG" || die "Could not load configuration file ${CONFIG}!"
 
 
