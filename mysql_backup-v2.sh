@@ -2,6 +2,16 @@
 
 # TBone Lu
 # https://tbonelu.info
+# connection info
+REMOTE_HOST=
+REMOTE_USER=root
+REMOTE_PORT=22
+# path to private key
+KEY=
+# path to pull files from
+LOCAL_PATH=/backup
+# path to push files to
+REMOTE_PATH=/backup
 
 function die () {
   echo >&2 "$@"
@@ -103,3 +113,8 @@ EOF
   echo -e  "FTP transfer complete! \n"
 fi
 echo "Your backup is complete!"
+echo ""
+
+# start the backup
+echo "Rsync backup files to backup server..."
+rsync -au -v -e 'ssh -p '$REMOTE_PORT' -i '$KEY'' $LOCAL_PATH $REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH
